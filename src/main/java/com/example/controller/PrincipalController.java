@@ -1,12 +1,13 @@
 package com.example.controller;
 
-import com.example.controller.request.CreateUserDTO;
+import com.example.dto.CreateUserDTO;
 import com.example.models.ERole;
 import com.example.models.RoleEntity;
 import com.example.models.UserEntity;
 import com.example.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +36,15 @@ public class PrincipalController {
 
     @PostMapping("/createUser")
     public ResponseEntity<?> createUser(@Valid @RequestBody CreateUserDTO createUserDTO){
+
+        if(userRepository.existsByUsername(createUserDTO.getUsername())) {
+            return new ResponseEntity<>("Ese nombre de usuario ya existe", HttpStatus.BAD_REQUEST);
+        }
+
+        if(userRepository.existsByEmail(createUserDTO.getEmail())) {
+            return new ResponseEntity<>("Ese email de usuario ya existe",HttpStatus.BAD_REQUEST);
+        }
+
 
         Set<RoleEntity> roles = createUserDTO.getRoles().stream()
                 .map(role -> RoleEntity.builder()

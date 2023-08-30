@@ -3,7 +3,6 @@ package com.example.security;
 import com.example.security.filters.JwtAuthenticationFilter;
 import com.example.security.filters.JwtAuthorizationFilter;
 import com.example.security.jwt.JwtUtils;
-import com.example.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

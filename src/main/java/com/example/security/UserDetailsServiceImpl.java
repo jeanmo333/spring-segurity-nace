@@ -1,4 +1,4 @@
-package com.example.service;
+package com.example.security;
 
 import com.example.models.UserEntity;
 import com.example.repositories.UserRepository;
@@ -21,10 +21,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
 
-        UserEntity userEntity = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("El usuario " + username + " no existe."));
+        UserEntity userEntity = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
+                .orElseThrow(() -> new UsernameNotFoundException("El usuario " + usernameOrEmail + " no existe."));
 
         Collection<? extends GrantedAuthority> authorities = userEntity.getRoles()
                 .stream()

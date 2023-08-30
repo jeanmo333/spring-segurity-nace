@@ -31,7 +31,7 @@ public class SpringSecurityJwtApplication {
 		return args -> {
 
 			UserEntity userEntity = UserEntity.builder()
-					.email("moril@mail.com")
+					.email("moril@gmail.com")
 					.username("moril")
 					.password(passwordEncoder.encode("123456"))
 					.roles(Set.of(RoleEntity.builder()
@@ -40,7 +40,7 @@ public class SpringSecurityJwtApplication {
 					.build();
 
 			UserEntity userEntity2 = UserEntity.builder()
-					.email("andoly@mail.com")
+					.email("andoly@gmail.com")
 					.username("andoly")
 					.password(passwordEncoder.encode("123456"))
 					.roles(Set.of(RoleEntity.builder()
@@ -49,7 +49,7 @@ public class SpringSecurityJwtApplication {
 					.build();
 
 			UserEntity userEntity3 = UserEntity.builder()
-					.email("abel@mail.com")
+					.email("abel@gmail.com")
 					.username("abel")
 					.password(passwordEncoder.encode("123456"))
 					.roles(Set.of(RoleEntity.builder()
